@@ -6,7 +6,7 @@ import Home from './pages/Home';
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/electronic_website">
       <div className="min-h-screen flex flex-col font-sans text-gray-900 bg-white">
         <Navbar />
         <main className="flex-grow">
