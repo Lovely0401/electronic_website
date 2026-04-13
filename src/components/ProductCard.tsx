@@ -1,5 +1,6 @@
 import React from 'react';
 import { Star, ShoppingCart } from 'lucide-react';
+import { useCart } from '../context/CartContext';
 
 interface ProductProps {
   id: number;
@@ -9,7 +10,9 @@ interface ProductProps {
   image: string;
 }
 
-const ProductCard: React.FC<ProductProps> = ({ name, price, rating, image }) => {
+const ProductCard: React.FC<ProductProps> = ({ id, name, price, rating, image }) => {
+  const { addToCart } = useCart();
+
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow group flex flex-col">
       <div className="relative overflow-hidden pt-[100%]">
@@ -30,7 +33,10 @@ const ProductCard: React.FC<ProductProps> = ({ name, price, rating, image }) => 
           ))}
           <span className="text-xs text-gray-500 ml-2">({rating})</span>
         </div>
-        <button className="w-full flex items-center justify-center space-x-2 bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white py-2 rounded-lg font-medium transition-colors">
+        <button 
+          onClick={() => addToCart({ id, name, price, image })}
+          className="w-full flex items-center justify-center space-x-2 bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white py-2 rounded-lg font-medium transition-colors"
+        >
           <ShoppingCart className="w-4 h-4" />
           <span>Add to Cart</span>
         </button>

@@ -1,7 +1,10 @@
 import { ShoppingCart, Search, Menu } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 
 const Navbar = () => {
+  const { totalItems } = useCart();
+
   return (
     <nav className="bg-white shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -24,10 +27,14 @@ const Navbar = () => {
           <button className="hover:text-blue-600 transition-colors">
             <Search className="w-5 h-5" />
           </button>
-          <button className="hover:text-blue-600 transition-colors relative">
-            <ShoppingCart className="w-5 h-5" />
-            <span className="absolute -top-2 -right-2 bg-blue-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">0</span>
-          </button>
+          <Link to="/cart" className="hover:text-blue-600 transition-colors relative">
+  <ShoppingCart className="w-5 h-5" />
+  {totalItems > 0 && (
+    <span className="absolute -top-2 -right-2 bg-blue-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+      {totalItems}
+    </span>
+  )}
+</Link>
           <div className="hidden md:flex items-center space-x-2 border-l pl-6">
             <button className="hover:text-blue-600 font-medium">Log In</button>
             <button className="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">Sign Up</button>
