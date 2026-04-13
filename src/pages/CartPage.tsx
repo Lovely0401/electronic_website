@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Trash2, Plus, Minus, ShoppingBag } from 'lucide-react';
 
 const CartPage = () => {
-  const { cart, addToCart, removeFromCart, totalItems } = useCart();
+  const { cart, addToCart, removeFromCart, decreaseQuantity, totalItems } = useCart();
 
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const shipping = subtotal > 500 ? 0 : 25;
@@ -36,10 +36,10 @@ const CartPage = () => {
               <img src={item.image} alt={item.name} className="w-24 h-24 object-contain" />
               <div className="flex-grow">
                 <h3 className="font-bold text-gray-900 text-lg">{item.name}</h3>
-                <p className="text-blue-600 font-bold">${item.price}</p>
+                <p className="text-blue-600 font-bold">₹{item.price}</p>
               </div>
               <div className="flex items-center space-x-4 border rounded-lg px-2 py-1">
-                <button onClick={() => removeFromCart(item.id)} className="p-1 hover:text-blue-600">
+                <button onClick={() => decreaseQuantity(item.id)} className="p-1 hover:text-blue-600">
                   <Minus className="w-4 h-4" />
                 </button>
                 <span className="font-medium w-4 text-center">{item.quantity}</span>
@@ -60,16 +60,16 @@ const CartPage = () => {
           <div className="space-y-4 mb-6 border-b pb-6 text-gray-600">
             <div className="flex justify-between">
               <span>Subtotal</span>
-              <span className="font-semibold text-gray-900">${subtotal.toFixed(2)}</span>
+              <span className="font-semibold text-gray-900">₹{subtotal.toFixed(2)}</span>
             </div>
             <div className="flex justify-between">
               <span>Shipping</span>
-              <span className="font-semibold text-gray-900">{shipping === 0 ? "FREE" : `$${shipping}`}</span>
+              <span className="font-semibold text-gray-900">{shipping === 0 ? "FREE" : `₹${shipping}`}</span>
             </div>
           </div>
           <div className="flex justify-between text-xl font-bold mb-8">
             <span>Total</span>
-            <span className="text-blue-600">${total.toFixed(2)}</span>
+            <span className="text-blue-600">₹{total.toFixed(2)}</span>
           </div>
           <button className="w-full bg-blue-600 text-white py-4 rounded-xl font-bold hover:bg-blue-700 transition-all">
             Proceed to Checkout

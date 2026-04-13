@@ -5,7 +5,7 @@ const features = [
   {
     icon: Truck,
     title: "Free & Fast Delivery",
-    description: "Enjoy free shipping on all orders above $100. Delivery within 2-3 business days.",
+    description: "Enjoy free shipping on all orders above ₹100. Delivery within 2-3 business days.",
     color: "bg-blue-100 text-blue-600"
   },
   {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Star, ShoppingCart } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 
 interface ProductProps {
@@ -15,16 +16,16 @@ const ProductCard: React.FC<ProductProps> = ({ id, name, price, rating, image })
 
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow group flex flex-col">
-      <div className="relative overflow-hidden pt-[100%]">
+      <Link to={`/shop/${id}`} className="relative overflow-hidden pt-[100%] block">
         <img 
           src={image} 
           alt={name} 
           className="absolute top-0 left-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
         />
         <div className="absolute top-2 right-2 bg-white px-2 py-1 rounded-md text-sm font-bold text-gray-800 shadow-sm">
-          ${price.toFixed(2)}
+          ₹{price.toFixed(2)}
         </div>
-      </div>
+      </Link>
       <div className="p-5 flex-grow flex flex-col">
         <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">{name}</h3>
         <div className="flex items-center mb-4 mt-auto">

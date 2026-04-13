@@ -5,6 +5,10 @@ import Footer from '../components/Footer';
 import Home from './Home';
 import Shop from './Shop';
 import CartPage from './CartPage';
+import ProductDetail from './ProductDetail';
+import About from './About';
+import Contact from './Contact';
+import Categories from './Categories';
 
 
 const App = () => {
@@ -16,9 +20,11 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/shop" element={<Shop />}/>
-            <Route path="/categories" element={<div className="p-16 text-center text-2xl font-semibold text-gray-500">Categories Page (Coming Soon)</div>} />
+            <Route path="/shop/:id" element={<ProductDetail />} />
+            <Route path="/categories" element={<Categories />} />
+            <Route path="/about" element={<About />} />
             <Route path="/cart" element={<CartPage />} />
-            <Route path="/contact" element={<div className="p-16 text-center text-2xl font-semibold text-gray-500">Contact Page (Coming Soon)</div>} />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
         <Footer />
